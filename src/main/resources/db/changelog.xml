@@ -1,0 +1,22 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation=
+                           "http://www.liquibase.org/xml/ns/dbchangelog
+                           https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <include file="scripts/000-initialize.sql" relativeToChangelogFile="true" />
+    <include file="scripts/001-light-preference-table.sql" relativeToChangelogFile="true" />
+    <include file="scripts/002-light-preference-fill.sql" relativeToChangelogFile="true" />
+    <include file="scripts/003-humidity-preference-table.sql" relativeToChangelogFile="true" />
+    <include file="scripts/004-humidity-preference-fill.sql" relativeToChangelogFile="true" />
+    <include file="scripts/005-temperature-preference-table.sql" relativeToChangelogFile="true" />
+    <include file="scripts/006-temperature-preference-fill.sql" relativeToChangelogFile="true" />
+    <include file="scripts/007-toxicity-table.sql" relativeToChangelogFile="true" />
+    <include file="scripts/008-toxicity-fill.sql" relativeToChangelogFile="true" />
+    <include file="scripts/009-flower-dict-table.sql" relativeToChangelogFile="true" />
+    <include file="scripts/010-flower-toxicity-table.sql" relativeToChangelogFile="true" />
+    <include file="scripts/011-alternative-name-table.sql" relativeToChangelogFile="true" />
+    <include file="scripts/012-article-table.sql" relativeToChangelogFile="true" />
+    <include file="scripts/013-flower-article-table.sql" relativeToChangelogFile="true" />
+
+</databaseChangeLog>
