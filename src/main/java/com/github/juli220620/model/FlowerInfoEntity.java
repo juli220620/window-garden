@@ -3,16 +3,20 @@ package com.github.juli220620.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import static jakarta.persistence.CascadeType.ALL;
 
 @Getter
 @Setter
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
 @Table(schema = "flowers", name = "flower_dict")
 public class FlowerInfoEntity {
+
+    public FlowerInfoEntity() {
+        toxicity = new FlowerToxicityInfoEntity();
+    }
 
     @Id
     @Column(name = "id", nullable = false, unique = true)
@@ -24,8 +28,7 @@ public class FlowerInfoEntity {
     private String humidity;
     private String temperature;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "id", referencedColumnName = "flower_id")
+    @OneToOne(cascade = ALL, orphanRemoval = true, mappedBy = "flower")
     private FlowerToxicityInfoEntity toxicity;
 
 }

@@ -8,10 +8,16 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring",
         imports = FlowerToxicityMapper.class,
         uses = FlowerToxicityMapper.class)
-public interface FlowerInfoMapper {
+public abstract class FlowerInfoMapper {
+
+
+    public FlowerInfoEntity rqToEntity(AddFlowerInfoRq rq) {
+        var info = rqToEntityInternal(rq);
+        info.getToxicity().setFlower(info);
+        return info;
+    }
 
     @Mapping(target = "toxicity", source = ".")
-    FlowerInfoEntity rqToEntity(AddFlowerInfoRq rq);
-
+    protected abstract FlowerInfoEntity rqToEntityInternal(AddFlowerInfoRq rq);
 
 }

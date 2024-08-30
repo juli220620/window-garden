@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface FlowerToxicityMapper {
 
-    @Mapping(source = "id", target = "flowerId")
+    @Mapping(target = "flower", ignore = true)
     @Mapping(source = "toxicityExplanation", target = "explanation")
     FlowerToxicityInfoEntity flowerRqToToxEntity(AddFlowerInfoRq rq);
 }
