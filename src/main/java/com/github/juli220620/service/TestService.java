@@ -2,7 +2,7 @@ package com.github.juli220620.service;
 
 import com.github.juli220620.mapper.FlowerInfoMapper;
 import com.github.juli220620.repo.FlowerInfoRepo;
-import com.github.juli220620.web.AddFlowerInfoRq;
+import com.github.juli220620.web.rq.AddFlowerInfoRq;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

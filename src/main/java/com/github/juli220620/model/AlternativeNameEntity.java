@@ -11,14 +11,16 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(schema = "flowers", name = "flower_toxicity")
-public class FlowerToxicityInfoEntity {
-
-    private String toxicityStatus;
-    private String explanation;
+@Table(schema = "flowers", name = "alternative_name")
+public class AlternativeNameEntity {
 
     @Id
-    @OneToOne
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String alternativeName;
+
+    @ManyToOne
     @JoinColumn(name = "flower_id", referencedColumnName = "id")
     private FlowerInfoEntity flower;
 }

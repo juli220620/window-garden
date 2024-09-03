@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 import static jakarta.persistence.CascadeType.ALL;
 
 @Getter
@@ -30,5 +32,8 @@ public class FlowerInfoEntity {
 
     @OneToOne(cascade = ALL, orphanRemoval = true, mappedBy = "flower")
     private FlowerToxicityInfoEntity toxicity;
+
+    @OneToMany(cascade = ALL, orphanRemoval = true, mappedBy = "flower")
+    private List<AlternativeNameEntity> alternativeNames;
 
 }
