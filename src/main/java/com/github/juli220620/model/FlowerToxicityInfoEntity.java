@@ -1,5 +1,6 @@
 package com.github.juli220620.model;
 
+import com.github.juli220620.model.param.ToxicityStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +15,8 @@ import lombok.Setter;
 @Table(schema = "flowers", name = "flower_toxicity")
 public class FlowerToxicityInfoEntity {
 
-    private String toxicityStatus;
+    @Enumerated(EnumType.STRING)
+    private ToxicityStatus toxicityStatus;
     private String explanation;
 
     @Id

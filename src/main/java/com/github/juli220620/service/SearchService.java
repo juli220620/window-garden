@@ -1,8 +1,10 @@
 package com.github.juli220620.service;
 
 import com.github.juli220620.mapper.FlowerInfoMapper;
+import com.github.juli220620.model.FlowerInfoEntity;
 import com.github.juli220620.model.dto.FlowerInfoDto;
 import com.github.juli220620.repo.FlowerInfoRepo;
+import com.github.juli220620.web.rq.SearchParamsRq;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +19,26 @@ public class SearchService {
     private final FlowerInfoMapper mapper;
 
     public List<FlowerInfoDto> listAll() {
-        return flowerRepo.findAll().stream().map(mapper::entityToDto).collect(Collectors.toList());
+        return mapList(flowerRepo.findAll());
     }
 
     public FlowerInfoDto findById(String id) {
-        return flowerRepo.findById(id).map(mapper::entityToDto).orElse(new FlowerInfoDto());
+        return flowerRepo.findById(id)
+                .map(mapper::entityToDto)
+                .orElse(new FlowerInfoDto());
+    }
+
+    public List<FlowerInfoDto> findNonToxic() {
+        return mapList(flowerRepo.findNonToxic());
+    }
+
+    public List<FlowerInfoDto> findByParams(SearchParamsRq rq) {
+        return mapList(flowerRepo.findByParams(rq));
+    }
+
+    private List<FlowerInfoDto> mapList(List<FlowerInfoEntity> entities) {
+        return entities.stream()
+                .map(mapper::entityToDto)
+                .collect(Collectors.toList());
     }
 }

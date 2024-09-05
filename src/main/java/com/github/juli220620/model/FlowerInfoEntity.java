@@ -1,5 +1,8 @@
 package com.github.juli220620.model;
 
+import com.github.juli220620.model.param.HumidityPreference;
+import com.github.juli220620.model.param.LightPreference;
+import com.github.juli220620.model.param.TemperaturePreference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,9 +29,15 @@ public class FlowerInfoEntity {
 
     private String name;
     private boolean canBloom;
-    private String light;
-    private String humidity;
-    private String temperature;
+
+    @Enumerated(EnumType.STRING)
+    private LightPreference light;
+
+    @Enumerated(EnumType.STRING)
+    private HumidityPreference humidity;
+
+    @Enumerated(EnumType.STRING)
+    private TemperaturePreference temperature;
 
     @OneToOne(cascade = ALL, orphanRemoval = true, mappedBy = "flower")
     private FlowerToxicityInfoEntity toxicity;
