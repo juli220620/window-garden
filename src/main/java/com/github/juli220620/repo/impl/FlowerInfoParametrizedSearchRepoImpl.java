@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.github.juli220620.model.param.ToxicityStatus.NOT_POISONOUS;
@@ -42,20 +43,37 @@ public class FlowerInfoParametrizedSearchRepoImpl implements FlowerInfoParametri
 
             root.fetch("alternativeNames");
 
-            Predicate blooming;
-            if (rq.canBloom() != null && rq.canBloom()) {
-                blooming = builder.equal(root.get("canBloom"), true);
-            } else {
-                blooming = builder.equal(root.get("canBloom"), false);
+            List<Predicate> searchParams = new ArrayList<>();
+
+            if (rq.canBloom() != null) {
+                var blooming = rq.canBloom()
+                        ? builder.equal(root.get("canBloom"), true)
+                        : builder.equal(root.get("canBloom"), false);
+                searchParams.add(blooming);
             }
 
-            Predicate byName = null;
-            if (rq.name() != null) {
-                byName = builder.like(root.get("name"), rq.name());
+
+            if (rq.name() != null && !rq.name().isEmpty()) {
+                searchParams.add(builder.like(root.get("name"), rq.name()));
             }
 
-            Predicate finalParams = builder.and(blooming, byName);
-            criteriaQuery.select(root).where(finalParams);
+            if (rq.light() != null && !rq.light().isEmpty()) {
+                searchParams.add(builder.equal(root.get("light"), rq.light()));
+            }
+
+            if (rq.temperature() != null && !rq.temperature().isEmpty()) {
+                searchParams.add(builder.equal(root.get("temperature"), rq.temperature()));
+            }
+
+            if (rq.humidity() != null && !rq.humidity().isEmpty()) {
+                searchParams.add(builder.equal(root.get("humidity"), rq.humidity()));
+            }
+
+            if (rq.toxicityStatus() != null && !rq.toxicityStatus().isEmpty()) {
+                searchParams.add(builder.equal(root.get("toxicity").get("toxicityStatus"), rq.toxicityStatus()));
+            }
+
+            criteriaQuery.select(root).where(searchParams.toArray(new Predicate[]{}));
             return session.createQuery(criteriaQuery).getResultList();
         }
     }
