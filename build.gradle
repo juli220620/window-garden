@@ -21,6 +21,9 @@ dependencies {
     implementation 'org.mapstruct:mapstruct:1.6.0'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.0'
 
+    implementation 'org.hibernate:hibernate-jcache:6.5.2.Final'
+    implementation 'org.ehcache:ehcache:3.10.8'
+
     implementation 'org.slf4j:slf4j-api:2.0.16'
     implementation 'ch.qos.logback:logback-classic:1.5.7'
 }

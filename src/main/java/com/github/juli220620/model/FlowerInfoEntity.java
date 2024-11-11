@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ import static jakarta.persistence.CascadeType.ALL;
 @Getter
 @Setter
 @Entity
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @AllArgsConstructor
 @Table(schema = "flowers", name = "flower_dict")
 public class FlowerInfoEntity {

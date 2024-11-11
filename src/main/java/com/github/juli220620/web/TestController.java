@@ -17,7 +17,7 @@ public class TestController {
         service.addFlowerInfo(rq);
     }
 
-    @PutMapping("/{flowerId}")
+    @DeleteMapping("/{flowerId}")
     public void removeFlowerInfo(@PathVariable String flowerId) {
         service.removeFlowerInfo(flowerId);
     }
