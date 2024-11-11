@@ -5,6 +5,7 @@ import com.github.juli220620.model.FlowerInfoEntity;
 import com.github.juli220620.model.dto.FlowerInfoDto;
 import com.github.juli220620.repo.FlowerInfoRepo;
 import com.github.juli220620.web.rq.SearchParamsRq;
+import com.github.juli220620.web.rq.SearchRangedParamsRq;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,10 @@ public class SearchService {
 
     public List<FlowerInfoDto> findByParams(SearchParamsRq rq) {
         return mapList(flowerRepo.findByParams(rq));
+    }
+
+    public List<FlowerInfoDto> findByRangedParams(SearchRangedParamsRq rq) {
+        return mapList(flowerRepo.findByRangedParams(rq));
     }
 
     private List<FlowerInfoDto> mapList(List<FlowerInfoEntity> entities) {

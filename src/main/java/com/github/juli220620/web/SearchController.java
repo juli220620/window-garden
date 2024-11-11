@@ -3,6 +3,7 @@ package com.github.juli220620.web;
 import com.github.juli220620.model.dto.FlowerInfoDto;
 import com.github.juli220620.service.SearchService;
 import com.github.juli220620.web.rq.SearchParamsRq;
+import com.github.juli220620.web.rq.SearchRangedParamsRq;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +29,11 @@ public class SearchController {
     @GetMapping("/by-params")
     public List<FlowerInfoDto> findBy(@RequestBody SearchParamsRq rq) {
         return service.findByParams(rq);
+    }
+
+    @GetMapping("/by-range")
+    public List<FlowerInfoDto> findByRangedParams(@RequestBody SearchRangedParamsRq rq) {
+        return service.findByRangedParams(rq);
     }
 
     @GetMapping("/non-toxic")
